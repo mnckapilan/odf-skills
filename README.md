@@ -1,4 +1,4 @@
-# odf-skills
+# opendocument-skills
 
 Agent skills for working with [OpenDocument Format](https://en.wikipedia.org/wiki/OpenDocument) files — the open standard behind LibreOffice, Google Docs exports, and more.
 
@@ -26,15 +26,15 @@ Install a skill by curling its two files into `~/.claude/skills/` (or `.claude/s
 **ods:**
 ```bash
 mkdir -p ~/.claude/skills/ods/scripts
-curl -fsSL https://raw.githubusercontent.com/mnckapilan/odf-skills/main/ods/SKILL.md -o ~/.claude/skills/ods/SKILL.md
-curl -fsSL https://raw.githubusercontent.com/mnckapilan/odf-skills/main/ods/scripts/ods.py -o ~/.claude/skills/ods/scripts/ods.py
+curl -fsSL https://raw.githubusercontent.com/mnckapilan/opendocument-skills/main/ods/SKILL.md -o ~/.claude/skills/ods/SKILL.md
+curl -fsSL https://raw.githubusercontent.com/mnckapilan/opendocument-skills/main/ods/scripts/ods.py -o ~/.claude/skills/ods/scripts/ods.py
 ```
 
 **odt:**
 ```bash
 mkdir -p ~/.claude/skills/odt/scripts
-curl -fsSL https://raw.githubusercontent.com/mnckapilan/odf-skills/main/odt/SKILL.md -o ~/.claude/skills/odt/SKILL.md
-curl -fsSL https://raw.githubusercontent.com/mnckapilan/odf-skills/main/odt/scripts/odt.py -o ~/.claude/skills/odt/scripts/odt.py
+curl -fsSL https://raw.githubusercontent.com/mnckapilan/opendocument-skills/main/odt/SKILL.md -o ~/.claude/skills/odt/SKILL.md
+curl -fsSL https://raw.githubusercontent.com/mnckapilan/opendocument-skills/main/odt/scripts/odt.py -o ~/.claude/skills/odt/scripts/odt.py
 ```
 
 Then invoke with `/ods` or `/odt` in your agent. No further setup needed — the Python dependency ([odfpy](https://github.com/eea/odfpy)) is declared as a [PEP 723](https://peps.python.org/pep-0723/) inline dependency and installed automatically by `uv` on first use.
@@ -108,7 +108,7 @@ uv run --with pytest pytest odt/tests/ -v
 ## Repository layout
 
 ```
-odf-skills/
+opendocument-skills/
 ├── ods/                  # ODS skill
 │   ├── SKILL.md
 │   ├── scripts/ods.py
