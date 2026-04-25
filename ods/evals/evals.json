@@ -1,0 +1,89 @@
+{
+  "skill_name": "ods",
+  "evals": [
+    {
+      "id": 1,
+      "name": "explore-multisheet-file",
+      "prompt": "what's in evals/files/sales.ods?",
+      "expected_output": "A summary of the file: two sheets (Sales and Summary), the Sales sheet has 6 rows including a header with Rep, Q1–Q4 columns, and the Summary sheet has 3 rows. Key data values should be mentioned.",
+      "files": ["evals/files/sales.ods"],
+      "assertions": [
+        "Response mentions both sheet names: Sales and Summary",
+        "Response describes the columns in the Sales sheet (Rep, Q1, Q2, Q3, Q4)",
+        "Response includes at least some of the actual data values (e.g. rep names or numbers)",
+        "Response does not hallucinate sheet names or columns that don't exist"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "precise-cell-lookup",
+      "prompt": "In evals/files/sales.ods, what is the value in cell C3 of the Sales sheet?",
+      "expected_output": "The value 15200 (Carol's Q1 — row 3, column C).",
+      "files": ["evals/files/sales.ods"],
+      "assertions": [
+        "Response states the value 15200",
+        "Response identifies the correct cell (C3) and sheet (Sales)"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "append-rows",
+      "prompt": "Add a new sales rep to evals/files/sales.ods — Frank with Q1=10500, Q2=11800, Q3=13200, Q4=15600. Add him to the Sales sheet.",
+      "expected_output": "Frank is appended as a new row in the Sales sheet. The file is saved and the new row is confirmed.",
+      "files": ["evals/files/sales.ods"],
+      "assertions": [
+        "Response confirms the row was added successfully",
+        "The Sales sheet in the output file contains a row with Frank and the values 10500, 11800, 13200, 15600",
+        "No existing rows in the Sales sheet were modified"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "sheet-management",
+      "prompt": "In evals/files/sales.ods, rename the Summary sheet to Overview and add a new empty sheet called Notes.",
+      "expected_output": "Summary is renamed to Overview and a new sheet called Notes is added. The Sales sheet is untouched.",
+      "files": ["evals/files/sales.ods"],
+      "assertions": [
+        "The output file has a sheet named Overview",
+        "The output file has a sheet named Notes",
+        "The output file no longer has a sheet named Summary",
+        "The Sales sheet still exists with its original data intact"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "create-new-file",
+      "prompt": "Create a new ODS file at /tmp/budget.ods with two sheets: Income and Expenses.",
+      "expected_output": "A new ODS file created at /tmp/budget.ods with empty Income and Expenses sheets.",
+      "files": [],
+      "assertions": [
+        "Response confirms the file was created",
+        "The created file contains exactly two sheets named Income and Expenses"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "missing-email-identification",
+      "prompt": "Look at evals/files/contacts.ods and tell me which contacts are missing an email address.",
+      "expected_output": "Bob and David are missing emails. The response should identify them by name.",
+      "files": ["evals/files/contacts.ods"],
+      "assertions": [
+        "Response identifies Bob as missing an email",
+        "Response identifies David as missing an email",
+        "Response does not incorrectly flag Alice, Carol, or Eve as missing emails",
+        "Response states the count: 2 contacts are missing emails"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "nonexistent-sheet-error",
+      "prompt": "Read the 'Revenue' sheet from evals/files/sales.ods.",
+      "expected_output": "A clear error that the sheet 'Revenue' does not exist, along with the names of sheets that do exist.",
+      "files": ["evals/files/sales.ods"],
+      "assertions": [
+        "Response communicates that the sheet was not found",
+        "Response lists the actual available sheet names (Sales, Summary)"
+      ]
+    }
+  ]
+}
