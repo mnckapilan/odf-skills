@@ -4,7 +4,9 @@ description: >
   Work with ODS (OpenDocument Spreadsheet) files. Use when the user wants to
   read, write, create, or modify .ods spreadsheet files — listing sheets,
   reading rows, getting or setting cells, appending data, or managing sheets.
-allowed-tools: Bash
+license: MIT
+compatibility: Requires uv and Python 3.11+
+allowed-tools: Bash(uv:*)
 ---
 
 # ODS skill
