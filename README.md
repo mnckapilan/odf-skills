@@ -4,6 +4,47 @@ Agent skills for working with [OpenDocument Format](https://en.wikipedia.org/wik
 
 Skills follow the [Agent Skills](https://agentskills.io) open standard and work with any compatible agent.
 
+## Contents
+
+- [Installation](#installation)
+- [Skills](#skills)
+  - [ods — OpenDocument Spreadsheet](#ods--opendocument-spreadsheet)
+  - [odt — OpenDocument Text](#odt--opendocument-text)
+- [Running tests](#running-tests)
+- [Repository layout](#repository-layout)
+
+## Installation
+
+Requires [uv](https://docs.astral.sh/uv/):
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+Then run the installer:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/mnckapilan/odf-skills/main/install.sh | sh
+```
+
+The installer is interactive — it will ask which skills to install and whether to install globally (`~/.claude/skills/`) or locally (`./.claude/skills/` for the current project only).
+
+To skip the prompts, pass flags directly:
+
+```bash
+# Install specific skills
+curl -fsSL https://raw.githubusercontent.com/mnckapilan/odf-skills/main/install.sh | sh -s -- ods
+curl -fsSL https://raw.githubusercontent.com/mnckapilan/odf-skills/main/install.sh | sh -s -- ods odt
+
+# Control install location
+curl -fsSL https://raw.githubusercontent.com/mnckapilan/odf-skills/main/install.sh | sh -s -- --global ods
+curl -fsSL https://raw.githubusercontent.com/mnckapilan/odf-skills/main/install.sh | sh -s -- --local ods
+```
+
+Set `CLAUDE_SKILLS_DIR` to override the destination entirely. Invoke with `/ods` or `/odt` in your agent once installed.
+
+No further setup is needed — the underlying Python dependency ([odfpy](https://github.com/eea/odfpy)) is declared as a [PEP 723](https://peps.python.org/pep-0723/) inline dependency and installed automatically by `uv` on first use.
+
 ## Skills
 
 ### `ods` — OpenDocument Spreadsheet
@@ -58,38 +99,6 @@ Paragraphs and headings are addressed by 0-based index. Use `file-info` to see c
 - Only direct paragraphs and headings are indexed; content nested inside tables or text frames is not included
 
 ---
-
-## Installation
-
-Requires [uv](https://docs.astral.sh/uv/):
-
-```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
-```
-
-Then run the installer:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/mnckapilan/odf-skills/main/install.sh | sh
-```
-
-The installer is interactive — it will ask which skills to install and whether to install globally (`~/.claude/skills/`) or locally (`./.claude/skills/` for the current project only).
-
-To skip the prompts, pass flags directly:
-
-```bash
-# Install specific skills
-curl -fsSL https://raw.githubusercontent.com/mnckapilan/odf-skills/main/install.sh | sh -s -- ods
-curl -fsSL https://raw.githubusercontent.com/mnckapilan/odf-skills/main/install.sh | sh -s -- ods odt
-
-# Control install location
-curl -fsSL https://raw.githubusercontent.com/mnckapilan/odf-skills/main/install.sh | sh -s -- --global ods
-curl -fsSL https://raw.githubusercontent.com/mnckapilan/odf-skills/main/install.sh | sh -s -- --local ods
-```
-
-Set `CLAUDE_SKILLS_DIR` to override the destination entirely. Invoke with `/ods` or `/odt` in your agent once installed.
-
-No further setup is needed — the underlying Python dependency ([odfpy](https://github.com/eea/odfpy)) is declared as a [PEP 723](https://peps.python.org/pep-0723/) inline dependency and installed automatically by `uv` on first use.
 
 ## Running tests
 
