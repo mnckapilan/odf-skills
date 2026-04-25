@@ -67,17 +67,20 @@ Requires [uv](https://docs.astral.sh/uv/):
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-Then clone and copy whichever skills you need:
+Then install with the one-liner:
 
 ```bash
-git clone https://github.com/mnckapilan/odf-skills
+# Install all skills
+curl -fsSL https://raw.githubusercontent.com/mnckapilan/odf-skills/main/install.sh | sh
 
-# Install one or both skills
-cp -r odf-skills/ods ~/.claude/skills/ods
-cp -r odf-skills/odt ~/.claude/skills/odt
+# Install a specific skill
+curl -fsSL https://raw.githubusercontent.com/mnckapilan/odf-skills/main/install.sh | sh -s ods
+curl -fsSL https://raw.githubusercontent.com/mnckapilan/odf-skills/main/install.sh | sh -s odt
 ```
 
-Invoke with `/ods` or `/odt` in your agent. No further setup is needed — the underlying Python dependency ([odfpy](https://github.com/eea/odfpy)) is declared as a [PEP 723](https://peps.python.org/pep-0723/) inline dependency and installed automatically by `uv` on first use.
+Skills are installed to `~/.claude/skills/`. Set `CLAUDE_SKILLS_DIR` to override the destination. Invoke with `/ods` or `/odt` in your agent once installed.
+
+No further setup is needed — the underlying Python dependency ([odfpy](https://github.com/eea/odfpy)) is declared as a [PEP 723](https://peps.python.org/pep-0723/) inline dependency and installed automatically by `uv` on first use.
 
 ## Running tests
 
