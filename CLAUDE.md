@@ -38,9 +38,9 @@ Each skill directory follows this layout:
 │   └── <format>.py  # Self-contained CLI script (PEP 723 inline deps, run via uv)
 ├── evals/
 │   ├── evals.json   # Eval test cases (prompts, expected outputs, assertions)
-│   └── files/       # Committed ODS/ODF fixture files for evals
+│   └── files/       # Committed fixture files for evals
 └── tests/
-    ├── conftest.py  # Shared fixtures (create temp ODS files via the script itself)
+    ├── conftest.py  # Shared fixtures (create temp files via the script itself)
     └── test_<format>.py
 ```
 
